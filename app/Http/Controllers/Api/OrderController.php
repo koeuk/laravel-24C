@@ -1,29 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Student;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderResource;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class StudentController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $students = Student::all();
-        // dd($students);
-        return view('students.list',compact('students'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
         //
+        $order =OrderProduct::list();
+        $order = OrderResource::collection($order);
+        return $order;
     }
 
     /**
@@ -32,6 +26,12 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //
+        OrderProduct::store($request);
+        return response()->json([
+            'success' => true,
+            'data' => true,
+            'message' => 'product created successfully'
+        ], 200);
     }
 
     /**
@@ -40,14 +40,9 @@ class StudentController extends Controller
     public function show(string $id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $orderProduct = OrderProduct::find($id);
+        $orderProduct= new OrderResource($orderProduct);
+        return ["success" => true, "data" =>$orderProduct];
     }
 
     /**

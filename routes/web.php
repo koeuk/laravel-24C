@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductDiscountController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,9 @@ Route::get('/about',[AboutController::class,'index']);
 Route::get('/morning',[AboutController::class,'sayMorning']);
 
 //today
-Route::get('/student',[StudentController::class,'index']);
+// Route::get('/student',[StudentController::class,'index'])->name('student');
 Route::get('/customer',[CustomerController::class,'index'])->name('customer');
+
+Route::get('/discountProduct',[ProductDiscountController::class,'index'])->name('DiscountProduct');
+
+Route::get('/pro/list',[ProductDiscountController::class,'index'])->name('Promotion.list');

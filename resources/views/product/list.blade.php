@@ -33,7 +33,6 @@
     </tr>
   </tbody>
 </table>
-<a class="btn btn-dark" href="{{route('student')}}">click me</a>
 </div>
 </body>
 </html>

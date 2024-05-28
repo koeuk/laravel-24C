@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentRequest;
+use App\Http\Resources\ShowStudentResource;
+use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -14,13 +17,14 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::list();
+        $students = StudentResource::collection($students);
         return response()->json(['success' => true, 'data' => $students], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
         Student::store($request);
         return response()->json([
@@ -36,6 +40,7 @@ class StudentController extends Controller
     public function show(string $id)
     {
         $student = Student::find($id);
+        $student = new ShowStudentResource($student);
         return response()->json(['success' => true, 'data' => $student], 200);
 
     }
@@ -43,7 +48,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StudentRequest $request, string $id)
     {
         Student::store($request,$id);
         return response()->json([

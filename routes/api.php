@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\PromotionController;
+use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\ProductDiscountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +28,27 @@ Route::post('/student/create',[StudentController::class,'store'])->name('student
 Route::get('/student/show/{id}',[StudentController::class,'show'])->name('student.show');
 Route::put('/student/update/{id}',[StudentController::class,'update'])->name('student.update');
 Route::delete('/student/delete/{id}',[StudentController::class,'destroy'])->name('student.destroy');
+
+
+Route::get('/category/list',[CategoryController::class,'index'])->name('category.list');
+Route::post('/category/create',[CategoryController::class,'store'])->name('category.create');
+Route::get('/category/show/{id}',[CategoryController::class,'show'])->name('category.show');
+Route::put('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
+Route::delete('/category/delete/{id}',[CategoryController::class,'destroy'])->name('category.destroy');
+
+Route::get('/product/list',[ProductController::class,'index'])->name('product.list');
+Route::get('/product/show/{id}',[ProductController::class,'show'])->name('product.show');
+Route::post('/product/create',[ProductController::class,'store'])->name('product.create');
+Route::put('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
+Route::delete('/product/delete/{id}',[ProductController::class,'destroy'])->name('product.delete');
+
+
+Route::get('/promotion/list',[PromotionController::class,'index'])->name('Promotion.list');
+Route::get('/promotion/show/{id}',[PromotionController::class,'show'])->name('Promotion.show');
+Route::post('/promotion/create',[PromotionController::class,'store'])->name('promotion.create');
+Route::put('/promotion/update/{id}',[PromotionController::class,'update'])->name('promotion.update');
+Route::delete('/promotion/delete/{id}',[PromotionController::class,'destroy'])->name('promotion.delete');
+
+Route::get('/order/list',[OrderController::class,'index'])->name('order.list');
+Route::get('/order/show/{id}',[OrderController::class,'show'])->name('order.show');
+Route::post('/order/create',[OrderController::class,'store'])->name('order.create');

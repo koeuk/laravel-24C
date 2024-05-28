@@ -18,8 +18,12 @@ class Student extends Model
         'name',
         'age',
         'province',
+        'score',
+        'phone',
     ];
-
+    // public function product () {
+    //     return $this->belongsTo(Product::class,'order_products');
+    // }
     public static function list()
     {
         // $data = Student::all();
@@ -29,7 +33,7 @@ class Student extends Model
 
     public static function store($request, $id = null)
     {
-        $data = $request->only('name', 'age', 'province');
+        $data = $request->only('name', 'age', 'province', 'score', 'phone');
         $data = self::updateOrCreate(['id' => $id], $data);
     }
 }
